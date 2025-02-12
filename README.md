@@ -49,7 +49,7 @@ go mod tidy
 
 ### **3️⃣
 ```sh
-    docker-compose up
+docker-compose up
 ```
 
 ---
