@@ -21,6 +21,39 @@ It provides **user authentication, session management, and user data operations*
 
 ---
 
+
+## 🛠️ Installation Guide
+
+### **1️⃣ Install Go**
+
+If you don't have Go installed, download and install it:
+
+- Go: [Install Go](https://go.dev/doc/install/)
+
+Verify installation:
+
+```sh
+  go version
+```
+
+### **2️⃣ Install Swag for Swagger Documentation**
+
+Install `swag` globally:
+
+```sh
+  go install github.com/swaggo/swag/cmd/swag@latest
+```
+
+Verify installation:
+
+```sh
+  swag --version
+```
+### **3️⃣ Installation of Docker**
+- Docker: [Install Docker](https://docs.docker.com/get-docker/)
+- Docker Compose: [Install Docker Compose](https://docs.docker.com/compose/install/)
+
+
 ## 📁 API Documentation
 Coolshop API provides **interactive API documentation** via **Swagger**.
 
@@ -29,7 +62,7 @@ Coolshop API provides **interactive API documentation** via **Swagger**.
 
 To regenerate Swagger docs:
 ```sh
-swag init -g cmd/main.go
+  swag init -g cmd/main.go
 ```
 
 ---
@@ -38,40 +71,47 @@ swag init -g cmd/main.go
 
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/kemalkochekov/CoolShop.git
-cd CoolShop
+    git clone https://github.com/kemalkochekov/CoolShop.git
+    cd CoolShop
 ```
 
 ### **2️⃣ Install Dependencies**
 ```sh
-go mod tidy
+  go mod tidy
 ```
 
-### **3️⃣
+### 3️⃣ Run Docker
 ```sh
-docker-compose up
+  docker-compose up
 ```
 
 ---
 
 ## 📂 Project Structure
+
 ```
-📆 Coolshop
- ┣📂 cmd                     # Main entry point
- ┣📂 internal                
- ┣📂 logger                  # Logging with Uber Zap
- ┣📂 pkg                     # Utility packages (errors, constants, request validation)
- ┣📂 docs                    # Swagger API documentation
- ┣📂 tmp                     # Temporary files
- ┣📄 docker-compose.yaml     # Docker configuration
- ┣📄 Dockerfile              # Docker file
- ┣📄 Makefile                # Task automation
- ┣📄 go.mod                  # Go module dependencies
- ┣📄 README.md               # Project documentation
- ┣📄 .env                    # environment variables
- ┣📄 .air.toml               # Air - Live reload for Go apps
- ┣📄 .golangci.yml           # linters 
-```
+📦 Coolshop
+ ┣ 📂 cmd                     # Main entry point
+ ┃ ┗ 📜 main.go               # Starts the API server
+ ┣ 📂 internal                
+ ┃ ┣ 📂 app                   # App initialization & routes
+ ┃ ┣ 📂 auth                  # JWT authentication & middleware
+ ┃ ┣ 📂 cache                 # Redis caching
+ ┃ ┣ 📂 config                # App configuration
+ ┃ ┣ 📂 connection            # Database & Redis connections
+ ┃ ┣ 📂 migrations            # Database migrations
+ ┃ ┣ 📂 model                 # Data models
+ ┃ ┣ 📂 user                  # User business logic (handlers, repository, usecase)
+ ┣ 📂 logger                  # Logging with Uber Zap
+ ┣ 📂 middleware              # Custom middlewares (logging, error handling)
+ ┣ 📂 pkg                     # Utility packages (errors, constants, request validation)
+ ┣ 📂 docs                    # Swagger API documentation
+ ┣ 📂 tmp                     # Temporary files
+ ┣ 📜 docker-compose.yml      # Docker configuration
+ ┣ 📜 Makefile                # Task automation
+ ┣ 📜 go.mod                  # Go module dependencies
+ ┗ 📜 README.md               # Project documentation
+
 
 ---
 
@@ -103,11 +143,11 @@ docker-compose up
 ## 🏰 Docker Setup
 Run the project using **Docker**:
 ```sh
-docker-compose up --build
+  docker-compose up --build
 ```
 Stops and removes all containers:
 ```sh
-docker-compose down
+  docker-compose down
 ```
 
 ---
@@ -159,4 +199,3 @@ To contribute:
 
 ## ⭐ Support
 If you find this project useful, **give it a star ⭐ on GitHub!**
-
