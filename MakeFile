@@ -1,0 +1,39 @@
+ifeq ($(POSTGRES_SETUP),)
+	POSTGRES_SETUP := user=test password=test dbname=test host=localhost port=5432 sslmode=disable
+endif
+
+MIGRATION_FOLDER=$(CURDIR)/internal/migrations
+
+.PHONY: migration-create
+migration-create:
+	goose -dir "$(MIGRATION_FOLDER)" create "$(name)" sql
+
+.PHONY: migration-up
+migration-up:
+	goose -dir "$(MIGRATION_FOLDER)" postgres "$(POSTGRES_SETUP)" up
+
+.PHONY: migration-down
+migration-down:
+	goose -dir "$(MIGRATION_FOLDER)" postgres "$(POSTGRES_SETUP)" down
+
+.PHONY: linter-check
+linter-check:
+	golangci-lint run --config=.golangci.yml ./...
+
+
+.PHONY: correcting-file-order
+correcting-file-order:
+	go install golang.org/x/tools/cmd/goimports@latest ; \
+    export GOPATH=$$HOME/go ; \
+    export GOBIN=$$GOPATH/bin ; \
+    export PATH=$$PATH:$$GOBIN ; \
+    goimports -w .
+
+
+.PHONY: run-dockerfile
+run-dockerfile:
+	docker compose up
+
+.PHONY: swag-init
+swag-init:
+	swag init -g cmd/main.go

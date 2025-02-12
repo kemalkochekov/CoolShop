@@ -1,0 +1,66 @@
+linters:
+  disable-all: true
+  enable:
+    - gosimple
+    - govet
+    - ineffassign
+    - typecheck
+    - unused
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - containedctx
+    - decorder
+    - errname
+    - errorlint
+    - exhaustive
+    - forcetypeassert
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - godot
+    - goimports
+    - mnd
+    - makezero
+    - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - nlreturn
+    - nolintlint
+    - paralleltest
+    - prealloc
+    - promlinter
+    - reassign
+    - rowserrcheck
+    - sqlclosecheck
+    - unconvert
+    - unparam
+    - whitespace
+    - wsl
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  nakedret:
+    block-size: 4
+  nlreturn:
+    block-size: 4
+  nolintlint:
+    require-explanation: true
+    require-specific: true
+  wsl:
+    allow-cuddle-declarations: true
+    force-err-cuddling: true
+    allow-assign-and-anything: true
+  gocognit:
+    min-complexity: 160
+
+issues:
+  exclude-dirs:
+    - pkg
